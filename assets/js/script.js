@@ -20,9 +20,12 @@ function createPokemonList(pokemon) {
 }
 
 pokemonsList = async () => {
-  const pokemons = await getPokemons();
-  pokemons.map((pokemon) => {
-    pokemonListElement.innerHTML += createPokemonList(pokemon);
+  //Desestruturação de objetos, pegar os dados da API
+  const {results, details} = await getPokemons();
+  //Map para percorrer os dados da API
+  results.map((pokemon, index) => {
+    pokemonListElement.innerHTML += createPokemonList(pokemon, details[index]);
+  console.log(details[index]);
   });
 };
 pokemonsList();
